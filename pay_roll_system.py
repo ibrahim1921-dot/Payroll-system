@@ -138,12 +138,12 @@ def save_employees_to_csv(employees, file_path="employees.csv"):
             writer.writerow(row)
 # Example usage
 
-total_income = [SalariedEmployee("Sobur", 4, 10000), HourlyEmployee("Muzafar", 5, 30, 50), CommissionedEmployee("Hameed", 6, 8000, 30000, 0.5)]
+total_income = [SalariedEmployee("emp-name", 4, 10000), HourlyEmployee("emp-name", 5, 30, 50), CommissionedEmployee("emp-name", 6, 8000, 30000, 0.5)]
 for income in total_income:
     print(f"Employee: {income.name}, ID: {income.id}, Monthly Pay: {income.calculate_pay():.2f}")
 
 # Update the name of the first employee
-total_income[0].name = "Sidra"
+total_income[0].name = "new-emp-name"
 print(f"Updated Employee: {total_income[0].name}, ID: {total_income[0].id}, Monthly Pay: {total_income[0].calculate_pay():.2f}")
 
 #Save to files
