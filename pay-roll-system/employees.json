@@ -1,0 +1,49 @@
+[
+  {
+    "type": "HourlyEmployee",
+    "name": "Sidra",
+    "id": 1,
+    "hourly_rate": 0.6,
+    "hours_worked": 45.0
+  },
+  {
+    "type": "SalariedEmployee",
+    "name": "Sobur",
+    "id": 2,
+    "monthly_salary": 20000.0
+  },
+  {
+    "type": "HourlyEmployee",
+    "name": "Sidra",
+    "id": 1,
+    "hourly_rate": 0.3,
+    "hours_worked": 45.0
+  },
+  {
+    "type": "CommissionedEmployee",
+    "name": "Muzaffar",
+    "id": 3,
+    "base_salary": 7000.0,
+    "sales_amount": 90000.0,
+    "commission_rate": 0.4
+  },
+  {
+    "type": "SalariedEmployee",
+    "name": "Imdaad",
+    "id": 4,
+    "monthly_salary": 5000.0
+  },
+  {
+    "type": "SalariedEmployee",
+    "name": "Sobur",
+    "id": 2,
+    "monthly_salary": 20000.0
+  },
+  {
+    "type": "HourlyEmployee",
+    "name": "Muzafar",
+    "id": 1,
+    "hourly_rate": 0.5,
+    "hours_worked": 45.0
+  }
+]
