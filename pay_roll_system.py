@@ -136,16 +136,62 @@ def save_employees_to_csv(employees, file_path="employees.csv"):
             row = {k: "" for k in fieldnames}
             row.update(e.to_dict())
             writer.writerow(row)
-# Example usage
 
-total_income = [SalariedEmployee("Sobur", 4, 10000), HourlyEmployee("Muzafar", 5, 30, 50), CommissionedEmployee("Hameed", 6, 8000, 30000, 0.5)]
-for income in total_income:
-    print(f"Employee: {income.name}, ID: {income.id}, Monthly Pay: {income.calculate_pay():.2f}")
+def _prompt_str(prompt):
+    return input(prompt)
 
-# Update the name of the first employee
-total_income[0].name = "Sidra"
-print(f"Updated Employee: {total_income[0].name}, ID: {total_income[0].id}, Monthly Pay: {total_income[0].calculate_pay():.2f}")
+def _prompt_int(prompt, min_val=None, max_val=None):
+    while True:
+        try:
+            value = int(input(prompt))
+            if (min_val is not None and value < min_val) or (max_val is not None and value > max_val):
+                raise ValueError
+            return value
+        except ValueError:
+            print(f"Please enter a valid integer between {min_val} and {max_val}.")
 
-#Save to files
-save_employees_to_json(total_income, "employees.json")
-save_employees_to_csv(total_income, "employees.csv")
+def _prompt_float(prompt, min_val=None, max_val=None):
+    while True:
+        try:
+            value = float(input(prompt))
+            if (min_val is not None and value < min_val) or (max_val is not None and value > max_val):
+                raise ValueError
+            return value
+        except ValueError:
+            print(f"Please enter a valid number between {min_val} and {max_val}.")
+
+def create_employee(etype):
+    name = _prompt_str("Name: ")
+    emp_id = _prompt_int("ID (integer): ", min_val=0)
+
+    if etype == "salaried":
+        monthly_salary = _prompt_float("Monthly salary: ", min_val=0.01)
+        return SalariedEmployee(name, emp_id, monthly_salary)
+
+    if etype == "hourly":
+        hourly_rate = _prompt_float("Hourly rate: ", min_val=0.01)
+        hours_worked = _prompt_float("Hours worked (per week): ", min_val=0.0)
+        return HourlyEmployee(name, emp_id, hourly_rate, hours_worked)
+
+    base_salary = _prompt_float("Base salary: ", min_val=0.0)
+    sales_amount = _prompt_float("Sales amount: ", min_val=0.0)
+    commission_rate = _prompt_float("Commission rate (0.0 - 1.0): ", min_val=0.0, max_val=1.0)
+    return CommissionedEmployee(name, emp_id, base_salary, sales_amount, commission_rate)
+
+# Create a list of employees for demonstration purposes
+employees = [
+    SalariedEmployee("Alice", 1, 5000),
+    HourlyEmployee("Bob", 2, 20, 45),
+    CommissionedEmployee("Charlie", 3, 3000, 20000, 0.1)
+]
+
+print("\nCalculated Monthly Pay:")
+for e in employees:
+    try:
+        print(f"Employee: {e.name}, ID: {e.id}, Monthly Pay: {e.calculate_pay():.2f}")
+    except Exception as ex:
+        print(f"Error calculating pay for {e.name} (ID {e.id}): {ex}")
+
+save_employees_to_json(employees, "employees.json")
+save_employees_to_csv(employees, "employees.csv")
+print('Saved to "employees.json" and "employees.csv".')
