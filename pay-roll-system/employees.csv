@@ -1,4 +1,1 @@
-type,name,id,monthly_salary,hourly_rate,hours_worked,base_salary,sales_amount,commission_rate
-SalariedEmployee,Imdaad,4,5000.0,,,,,
-SalariedEmployee,Sobur,2,20000.0,,,,,
-HourlyEmployee,Muzafar,1,,0.5,45.0,,,
+
